@@ -8,7 +8,8 @@
 
 ```bash
 # Download CRA
-  npx create-react-app my-app
+  npx create-react-app my-app # создать папку
+  npx create-react-app . # в текущею папку
 
 # Запускает сервер разработки.
   npm start
