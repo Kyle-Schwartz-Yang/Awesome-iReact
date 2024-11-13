@@ -4,7 +4,7 @@
 
 ## Create React App (CRA)
 
-- [Create React App](https://www.google.com)
+- [Create React App](https://create-react-app.dev)
 
 ```bash
 # Download CRA
