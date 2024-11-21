@@ -6,14 +6,22 @@ import './employees-list.css';
 
 
 
-const EmployeesList = () => {
+const EmployeesList = (props) => {
+
+const elements = props.data.map(item => {
+  return  (
+    // <EmployeesListItem name = {item.name} salary = {item.salary}></EmployeesListItem>
+    <EmployeesListItem  {...item}></EmployeesListItem>
+
+  )
+})
+
   return (
     <ul className="app-list list-group">
-      <EmployeesListItem></EmployeesListItem>
-      <EmployeesListItem></EmployeesListItem>
-      <EmployeesListItem></EmployeesListItem>
+      {elements}
     </ul>
   );
+  
 }
 
 

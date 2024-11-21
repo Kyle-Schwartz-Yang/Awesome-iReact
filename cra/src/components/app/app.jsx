@@ -9,6 +9,16 @@ import './app.css';
 
 
 export default function App() {
+
+  // Представем себе что это данные от сервера
+  
+  const data = [
+    { name : 'John', salary : 200, increase: false},
+    { name : 'Ivan', salary : 5002, increase: true},
+    { name : 'Tommy', salary : 1001, increase: false}
+  ]
+
+
   return (
     <div className='app'>
       <EmpInfo></EmpInfo>
@@ -18,7 +28,7 @@ export default function App() {
         <EmpFilter></EmpFilter>
       </div>
 
-      <EmployeesList></EmployeesList>
+      <EmployeesList data={data}></EmployeesList>
       <EmployeesAddForm></EmployeesAddForm>
     </div>
   )
