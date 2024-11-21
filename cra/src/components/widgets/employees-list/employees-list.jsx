@@ -9,9 +9,12 @@ import './employees-list.css';
 const EmployeesList = (props) => {
 
 const elements = props.data.map(item => {
+
+  const {unique, ...itemProps} = item; 
+
   return  (
     // <EmployeesListItem name = {item.name} salary = {item.salary}></EmployeesListItem>
-    <EmployeesListItem  {...item}></EmployeesListItem>
+    <EmployeesListItem key={unique} {...itemProps}></EmployeesListItem>
 
   )
 })

@@ -13,9 +13,9 @@ export default function App() {
   // Представем себе что это данные от сервера
   
   const data = [
-    { name : 'John', salary : 200, increase: false},
-    { name : 'Ivan', salary : 5002, increase: true},
-    { name : 'Tommy', salary : 1001, increase: false}
+    { name : 'John', salary : 200, increase: false, unique: 0},
+    { name : 'Ivan', salary : 5002, increase: true, unique: 1},
+    { name : 'Tommy', salary : 1001, increase: false, unique: 2}
   ]
 
 
