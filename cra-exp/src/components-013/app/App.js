@@ -6,7 +6,7 @@ class TransferProps extends React.Component {
 
 
   /*
- 
+ Классовый компонент
   */
 
   constructor(props){
