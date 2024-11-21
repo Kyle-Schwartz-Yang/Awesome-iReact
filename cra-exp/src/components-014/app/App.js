@@ -50,6 +50,8 @@ class Counter extends React.Component {
       this.setState({ counter: Math.floor(Math.random() * ((max / step) + 1)) * step });
 
     */
+
+
   }
 
 
@@ -77,10 +79,9 @@ function App() {
 
   return (
     <div className="App">
-       <h1>Lesson 014</h1>
+      <h1>Lesson 014</h1>
         
-        <Counter counter={10}></Counter>
-
+      <Counter counter={10}></Counter>
 
     </div>
   );
