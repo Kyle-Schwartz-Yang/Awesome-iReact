@@ -14,8 +14,8 @@ export default function App() {
   
   const data = [
     { name : 'John', salary : 200,  unique: 0, increase: true, rise: true },
-    { name : 'Ivan', salary : 5002, unique: 1, increase: true, rise: true },
-    { name : 'Tommy', salary : 1001,  unique: 2, increase: true, rise: true },
+    { name : 'Ivan', salary : 5002, unique: 1, increase: false, rise: false },
+    { name : 'Tommy', salary : 1001,  unique: 2, increase: false, rise: false },
   ]
 
 
