@@ -39,11 +39,11 @@ onDelete = (id) => {
 }
 
 
-onAdd = (name, salary, increase, rise, unique = this.maxId++) => {
+onAdd = (name, salary, increase = false, rise = false, unique = this.maxId++) => {
   
   this.setState(state => {
-    const newObj = {name, salary, increase, rise, unique};
-    return { data: [...state.data, newObj]}
+    const newItem = {name, salary, increase, rise, unique};
+    return { data: [...state.data, newItem]}
   })
 
 }
