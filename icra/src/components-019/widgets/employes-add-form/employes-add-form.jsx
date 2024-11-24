@@ -30,7 +30,13 @@ onValueChange = (e) => {
 
 onSubmit = (e) => {
   e.preventDefault();
+
+  // Можно дабавить сообщение, изменить цвет поля и тд.
+  if(this.state.name.length < 3 || !this.state.salary) return;
+
   this.props.onAdd(this.state.name, this.state.salary, false, false);
+
+
 
   this.setState({
     name: '',
