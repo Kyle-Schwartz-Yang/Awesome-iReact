@@ -64,6 +64,9 @@ class App extends React.Component {
   onAdd = (name, salary, increase = false, rise = false, unique = this.maxId++) => {
     this.setState(state => {
       const newItem = {name, salary, increase, rise, unique};
+      
+      
+
       return { data: [...state.data, newItem]}
     })
   }
