@@ -8,6 +8,9 @@ import EmployeesAddForm from '../widgets/employes-add-form/employes-add-form';
 
 import './app.css';
 
+//# import searchEmployees
+import { searchEmployees } from '../shared/utils/searchEmployees';
+
 
 
 class App extends React.Component {
@@ -22,7 +25,7 @@ class App extends React.Component {
         { name : 'Ivan', salary : 5002, unique: 2134, increase: false, rise: false },
         { name : 'Tommy', salary : 1001,  unique: 3312, increase: false, rise: false },
       ],
-     term: '',
+      term: ''
     }
 
     this.maxId = 4; // NPM: react-id-generator 
@@ -71,28 +74,21 @@ class App extends React.Component {
     })
   }
 
-
-onUpdateSerchGlobal = (term) => {
-  this.setState({term: term})
-}
-
-
-
-// Поиск сотрудников
- searchEmp = (array, str) => {
-  return array.filter(item => {
-    return item.name.includes(str)
-  })
- }
+  
+  onUpdateSearch = (term) => {
+    this.setState({term: term})
+  }
 
   render(){
 
-  const filterData = this.searchEmp(this.state.data, this.state.term);
+
+
+    const filteredEmployees = searchEmployees(this.state.data, this.state.term); 
 
     return (
       
       <div className='app'>
-        <h1>Lesson: 021</h1>
+        <h1>Lesson: 021-pen</h1>
         <EmpInfo 
         employees = {this.state.data.length}
         increased = {() => {
@@ -101,15 +97,15 @@ onUpdateSerchGlobal = (term) => {
         ></EmpInfo>
 
         <div className="search-panel">
-          <SearchPanel onUpdateSerchGlobal={this.onUpdateSerchGlobal}></SearchPanel>
+          <SearchPanel onUpdateSearch={this.onUpdateSearch}></SearchPanel>
           <EmpFilter></EmpFilter>
         </div>
 
         <EmployeesList 
-        data={filterData} 
-        onDelete={this.onDelete} 
-        onToggleIncrease={this.onToggleIncrease}
-        onToggleRise={this.onToggleRise}
+          data={filteredEmployees} 
+          onDelete={this.onDelete} 
+          onToggleIncrease={this.onToggleIncrease}
+          onToggleRise={this.onToggleRise}
         ></EmployeesList>
         <EmployeesAddForm onAdd={this.onAdd}></EmployeesAddForm>
       </div>
