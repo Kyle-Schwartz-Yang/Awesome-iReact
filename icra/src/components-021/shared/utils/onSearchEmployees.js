@@ -1,7 +1,7 @@
 
 
 
-export const searchEmployees = (arr, str) => {
+export const onSearchEmployees = (arr, str) => {
 
   if(str.length === 0) {
     return arr;
