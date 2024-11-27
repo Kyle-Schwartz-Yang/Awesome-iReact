@@ -9,7 +9,7 @@ import EmployeesAddForm from '../widgets/employes-add-form/employes-add-form';
 import './app.css';
 
 //# import searchEmployees
-import { searchEmployees } from '../shared/utils/searchEmployees';
+import { onSearchEmployees } from '../shared/utils/onSearchEmployees';
 
 
 
@@ -25,7 +25,8 @@ class App extends React.Component {
         { name : 'Ivan', salary : 5002, unique: 2134, increase: false, rise: false },
         { name : 'Tommy', salary : 1001,  unique: 3312, increase: false, rise: false },
       ],
-      term: ''
+      term: '',
+      filter: 'All',
     }
 
     this.maxId = 4; // NPM: react-id-generator 
@@ -79,11 +80,33 @@ class App extends React.Component {
     this.setState({term: term})
   }
 
+  onFilterSelect = (filter) => {
+    this.setState({filter})
+  }
+
+
+  onFilterEmployees = (data, filter) => {
+
+    switch (filter) {
+      case 'Rise':
+        return data.filter(item=> item.rise);
+      case 'Salary':
+        return data.filter(item=> item.salary > 1000);
+      default:
+        return data
+    }
+
+  }
+
+
+
+
+
   render(){
 
+    const filteredEmployees = onSearchEmployees(this.state.data, this.state.term); 
+    const visibleData = this.onFilterEmployees(filteredEmployees, this.state.filter);
 
-
-    const filteredEmployees = searchEmployees(this.state.data, this.state.term); 
 
     return (
       
@@ -98,11 +121,11 @@ class App extends React.Component {
 
         <div className="search-panel">
           <SearchPanel onUpdateSearch={this.onUpdateSearch}></SearchPanel>
-          <EmpFilter></EmpFilter>
+          <EmpFilter filter={this.state.filter} onFilterSelect={this.onFilterSelect}></EmpFilter>
         </div>
 
         <EmployeesList 
-          data={filteredEmployees} 
+          data={visibleData} 
           onDelete={this.onDelete} 
           onToggleIncrease={this.onToggleIncrease}
           onToggleRise={this.onToggleRise}
