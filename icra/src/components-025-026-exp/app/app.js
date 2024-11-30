@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import StyleDynamic from '../shared/styleDynamic/styleDynamic';
-
+import StyledComponents from '../shared/styledComponents/styledComponents';
 
 import './app.css';
 
@@ -24,6 +24,7 @@ function App() {
 
       <div className="app-content">
           <StyleDynamic></StyleDynamic>
+          <StyledComponents></StyledComponents>
       </div>
     </div>
   );
