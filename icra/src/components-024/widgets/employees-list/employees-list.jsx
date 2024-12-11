@@ -14,10 +14,10 @@ const elements = props.data.map(item => {
 
     // <EmployeesListItem name = {item.name} salary = {item.salary}></EmployeesListItem>
     <EmployeesListItem 
-    key={unique} 
-    onDel={() => props.onDelete(unique)} {...itemProps}
-    onToggleIncrease = {() => props.onToggleIncrease(unique)}
-    onToggleRise = {() => props.onToggleRise(unique)}
+      key={unique} 
+      onDel={() => props.onDelete(unique)} {...itemProps}
+      onToggleIncrease = {() => props.onToggleIncrease(unique)}
+      onToggleRise = {() => props.onToggleRise(unique)}
     ></EmployeesListItem>
   )
 })
