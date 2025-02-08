@@ -13,12 +13,20 @@ class EmployeesAddForm extends Component {
   onValueChange = (e, arg) => {
     const { name, value } = e.target;
 
-    console.log(arg);
-
     this.setState((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    if (!this.state.name || !this.state.salary) {
+      alert("Заполните все поля!");
+      return;
+    }
+    this.props.onAdd(this.state.name, this.state.salary);
+    this.setState({ name: "", salary: "" });
   };
 
   render() {
@@ -31,6 +39,7 @@ class EmployeesAddForm extends Component {
             className="form-control new-post-label"
             placeholder="Как его зовут?"
             name="name"
+            value={this.state.name}
             onChange={(e) => this.onValueChange(e, "name")}
           />
           <input
@@ -38,10 +47,15 @@ class EmployeesAddForm extends Component {
             className="form-control new-post-label"
             placeholder="З/П в $?"
             name="salary"
+            value={this.state.salary}
             onChange={this.onValueChange}
           />
 
-          <button type="submit" className="btn btn-outline-light">
+          <button
+            type="submit"
+            className="btn btn-outline-light"
+            onClick={this.onSubmit}
+          >
             Добавить
           </button>
         </form>

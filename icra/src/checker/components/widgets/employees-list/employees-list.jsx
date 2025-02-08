@@ -7,7 +7,17 @@ class EmployeesList extends React.Component {
     const elements = this.props.data.map((item) => {
       const { id, ...itemProps } = item;
 
-      return <EmployeesListItem key={id} {...itemProps}></EmployeesListItem>;
+      return (
+        <EmployeesListItem
+          key={id}
+          {...itemProps}
+          onDelete={() => this.props.onDelete(id)}
+          onToggleAttribute={(event) => {
+            const attribute = event.currentTarget.getAttribute("data-toggle");
+            this.props.onToggleAttribute(id, attribute);
+          }}
+        ></EmployeesListItem>
+      );
     });
 
     return <ul className="app-list list-group">{elements}</ul>;

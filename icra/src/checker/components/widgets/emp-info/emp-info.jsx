@@ -2,14 +2,17 @@
 import "./emp-info.css";
 // -------------------------------------------------
 
-const EmpInfo = () => {
+const EmpInfo = (props) => {
+  // Your code here
+  const { employees, increased, risen } = props;
   return (
     <div className="emp-info">
-      <h1>Учет сотруднико в компании N</h1>
-      <h2>Общее количество сотрудников</h2>
-      <h2>Премию получат</h2>
+      <h1>Общее количество сотрудников:{employees}</h1>
+      <h2>Сотрудників йдуть на підвишення {risen} </h2>
+      <h2>Премию получат {increased} </h2>
     </div>
   );
 };
 
 export default EmpInfo;
+// -------------------------------------------------
