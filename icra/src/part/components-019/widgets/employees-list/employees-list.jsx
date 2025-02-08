@@ -1,34 +1,23 @@
-
-
 import EmployeesListItem from "../../features/employees-list-item/employees-list-item";
-import './employees-list.css';
-
+import "./employees-list.css";
 
 const EmployeesList = (props) => {
+  const elements = props.data.map((item) => {
+    const { unique, ...itemProps } = item;
 
-const elements = props.data.map(item => {
+    return (
+      // <EmployeesListItem name = {item.name} salary = {item.salary}></EmployeesListItem>
+      <EmployeesListItem
+        key={unique}
+        {...itemProps}
+        onDel={() => props.onDelete(unique)}
+        onToggleIncrease={() => props.onToggleIncrease(unique)}
+        onToggleRise={() => props.onToggleRise(unique)}
+      ></EmployeesListItem>
+    );
+  });
 
-  const {unique, ...itemProps} = item; 
-
-  return  (
-
-    // <EmployeesListItem name = {item.name} salary = {item.salary}></EmployeesListItem>
-    <EmployeesListItem 
-    key={unique} 
-    onDel={() => props.onDelete(unique)} {...itemProps}
-    onToggleIncrease = {() => props.onToggleIncrease(unique)}
-    onToggleRise = {() => props.onToggleRise(unique)}
-    ></EmployeesListItem>
-  )
-})
-
-  return (
-    <ul className="app-list list-group">
-      {elements}
-    </ul>
-  );
-  
-}
-
+  return <ul className="app-list list-group">{elements}</ul>;
+};
 
 export default EmployeesList;

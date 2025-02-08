@@ -4,8 +4,8 @@ export const data = [
     name: "John",
     surname: "Doe",
     salary: 1000,
-    increase: true,
-    rise: true,
+    increase: false,
+    rise: false,
   },
   {
     id: 1,
@@ -21,6 +21,6 @@ export const data = [
     surname: "Johnson",
     salary: 3000,
     increase: false,
-    rise: true,
+    rise: false,
   },
 ];
