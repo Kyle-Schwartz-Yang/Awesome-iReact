@@ -1,23 +1,42 @@
-import "./emp-filter.css";
+import React from "react";
+import "./emp-filter.scss";
 
-const EmpFilter = () => {
-  const buttons = [
-    { name: "Все сотрудника", active: true },
-    { name: "На повышение", active: false },
-    { name: "3/П больше 1000$", active: false },
-  ];
+export default class EmpFilter extends React.Component {
+  state = {
+    buttons: [
+      { name: "Все сотрудники", active: true, unique: "all" },
+      { name: "На повышение", active: false, unique: "rise" },
+      { name: "3/П больше 1000$", active: false, unique: "salary" },
+    ],
+  };
 
-  const buttonList = buttons.map((button, index) => (
-    <button
-      type="button"
-      key={index}
-      className={`btn btn-${button.active ? "light" : "outline-light"}`}
-    >
-      {button.name}
-    </button>
-  ));
+  handleClick = (unique) => {
+    // unique id
+    this.setState((state) => ({
+      buttons: state.buttons.map((item) => ({
+        ...item,
+        active: item.unique === unique,
+      })),
+    }));
+    this.props.onFilterSwitch(unique); // Отправляем событие на родительский компонент
+  };
 
-  return <div className="btn-group">{buttonList}</div>;
-};
-
-export default EmpFilter;
+  render() {
+    return (
+      <div className="btn-group">
+        {this.state.buttons.map((button) => (
+          <button
+            key={button.unique}
+            type="button"
+            className={`btn ${
+              button.active ? "btn-light" : "btn-outline-light"
+            }`}
+            onClick={() => this.handleClick(button.unique)}
+          >
+            {button.name}
+          </button>
+        ))}
+      </div>
+    );
+  }
+}

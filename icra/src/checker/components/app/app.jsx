@@ -18,6 +18,7 @@ export default class App extends React.Component {
   state = {
     data: data,
     searchQuery: "",
+    filter: "all",
   };
 
   onSearch = (query) => {
@@ -46,16 +47,34 @@ export default class App extends React.Component {
     }));
   };
 
+  onFilterSwitch = (filter) => {
+    this.setState({ filter });
+    console.log(filter);
+  };
+
+  filterPost = (data, filter) => {
+    switch (filter) {
+      case "rise":
+        return data.filter((item) => item.rise === true);
+      case "salary":
+        return data.filter((item) => item.salary > 1000);
+      default:
+        return data;
+    }
+  };
+
   render() {
-    const { data, searchQuery } = this.state;
+    const { data, searchQuery, filter } = this.state;
 
     // Фильтрация данных (поиск) - Орігінальне рішення
-    const filteredData = data.filter((item) => {
+    const searchData = data.filter((item) => {
       if (searchQuery.length === 0) {
         return true; // Вернем все элементы, если строка поиска пустая
       }
       return item.name.toLowerCase().includes(searchQuery.toLowerCase());
     });
+
+    const visibleData = this.filterPost(searchData, filter);
 
     const increaseLength = data.filter((item) => item.increase === true).length;
     const riseLength = data.filter((item) => item.rise === true).length;
@@ -70,11 +89,11 @@ export default class App extends React.Component {
 
         <div className="search-panel">
           <SearchPanel onSearch={this.onSearch}></SearchPanel>
-          <EmpFilter></EmpFilter>
+          <EmpFilter onFilterSwitch={this.onFilterSwitch}></EmpFilter>
         </div>
 
         <EmployeesList
-          data={filteredData}
+          data={visibleData}
           // onDelete={this.onDelete(id)}
           onDelete={this.onDelete}
           onToggleAttribute={this.onToggleAttribute}
